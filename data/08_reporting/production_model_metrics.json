@@ -1,0 +1,5 @@
+{
+  "regressor": "RandomForestRegressor",
+  "train_score": 602294087.2520268,
+  "test_score": 1267477079.2533636
+}

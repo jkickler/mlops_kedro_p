@@ -1,0 +1,122 @@
+# Here you can define all your data sets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+
+# Split data
+house_pricing_raw:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/house-pricing.csv
+  load_args:
+    sep: ','
+
+reference_raw:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/reference_data.csv
+  load_args:
+    sep: ','
+
+drift_data_raw:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/drift_data.csv
+  load_args:
+    sep: ','
+
+X_train_data:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/X_train.csv
+
+y_train_data:
+  type: pandas.CSVDataSet
+  filepath: data/05_model_input/y_train.csv
+
+X_test_data:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/X_test.csv
+
+y_test_data:
+  type: pandas.CSVDataSet
+  filepath: data/05_model_input/y_test.csv
+
+train_raw_describe:
+  type: kedro_mlflow.io.artifacts.MlflowArtifactDataSet
+  data_set:
+    type: json.JSONDataSet
+    filepath: data/08_reporting/train_raw_describe.json
+
+# Cleaning
+X_train_cleaned:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/X_train_cleaned.csv
+
+X_test_cleaned:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/X_test_cleaned.csv
+
+train_cleaned_describe:
+  type: kedro_mlflow.io.artifacts.MlflowArtifactDataSet
+  data_set:
+    type: json.JSONDataSet
+    filepath: data/08_reporting/train_cleaned_describe.json
+
+cleaning_preprocessor:
+  type: kedro_mlflow.io.artifacts.MlflowArtifactDataSet
+  data_set:
+    type: pickle.PickleDataSet
+    filepath: data/06_models/cleaning_preprocessor.pkl
+
+# Preprocessing
+X_train_transformed:
+  type: pandas.CSVDataSet
+  filepath: data/05_model_input/X_train_transformed.csv
+
+X_test_transformed:
+  type: pandas.CSVDataSet
+  filepath: data/05_model_input/X_test_transformed.csv
+
+train_transformed_describe:
+  type: kedro_mlflow.io.artifacts.MlflowArtifactDataSet
+  data_set:
+    type: json.JSONDataSet
+    filepath: data/08_reporting/train_transformed_describe.json
+
+feat_eng_preprocessor:
+  type: kedro_mlflow.io.artifacts.MlflowArtifactDataSet
+  data_set:
+    type: pickle.PickleDataSet
+    filepath: data/06_models/feat_eng_preprocessor.pkl
+
+# Model training
+production_model:
+  type: kedro_mlflow.io.artifacts.MlflowArtifactDataSet
+  data_set:
+    type: pickle.PickleDataSet
+    filepath: data/06_models/production_model.pkl
+
+production_model_metrics:
+  type: kedro_mlflow.io.artifacts.MlflowArtifactDataSet
+  data_set:
+    type: json.JSONDataSet
+    filepath: data/08_reporting/production_model_metrics.json
+
+# Model inference
+X_to_predict:
+  type: pandas.CSVDataSet
+  filepath: data/03_primary/X_to_predict.csv
+
+df_with_predict:
+  type: pandas.CSVDataSet
+  filepath: data/07_model_output/df_with_predict.csv
+
+predict_describe:
+  type: kedro_mlflow.io.artifacts.MlflowArtifactDataSet
+  data_set:
+    type: json.JSONDataSet
+    filepath: data/08_reporting/predict_describe.json
+
+# Model selection
+champion_model:
+  type: kedro_mlflow.io.artifacts.MlflowArtifactDataSet
+  data_set:
+    type: pickle.PickleDataSet
+    filepath: data/06_models/champion_model.pkl
