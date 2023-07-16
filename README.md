@@ -1,4 +1,4 @@
-# MLOps Project
+# MLOps pipeline - House Pricing
 
 Welcome! This is a repository for a MLOps project with Kedro and MLflow!
 
@@ -11,7 +11,7 @@ Welcome! This is a repository for a MLOps project with Kedro and MLflow!
 - Several pipelines were created for different tasks, which can be found in pipeline_registry.py
 - A requiremets.txt is provided to replicate the used packages.
 
-## How to configure the local environment for the project
+## How to configure the local environment
 
  ```
 python3 -m venv .mlops-env
